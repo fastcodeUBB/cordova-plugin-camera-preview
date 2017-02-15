@@ -18,7 +18,7 @@
 
 - (NSArray *) getDeviceFormats
 {
-  AVCaptureDevice *videoDevice = [CameraSessionManager deviceWithMediaType:AVMediaTypeVideo preferringPosition:self.defaultCamera];
+  AVCaptureDevice *videoDevice = [self cameraWithPosition:self.defaultCamera];
   return videoDevice.formats;
 }
 
@@ -62,7 +62,7 @@
         self.defaultCamera = AVCaptureDevicePositionBack;
       }
 
-      AVCaptureDevice *videoDevice = [CameraSessionManager deviceWithMediaType:AVMediaTypeVideo preferringPosition:self.defaultCamera];        
+      AVCaptureDevice *videoDevice = [self cameraWithPosition:self.defaultCamera];        
 
       if ([videoDevice hasFlash] && [videoDevice isFlashModeSupported:AVCaptureFlashModeAuto]) {
         if ([videoDevice lockForConfiguration:&error]) {
